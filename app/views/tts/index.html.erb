@@ -1,8 +1,32 @@
-<h1>ttアプリ</h1>
+<!DOCTYPE html>
+<html>
+  
+  <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>株式会社TT</title>
+  </head>
+<body>
+  
+<header>
+  <h1 class="top">ttアプリ</h1>
+</header>
+
 <br>
 <br>
 
 <%= form_with(model: @tt, local: true) do |form| %>
+  <% if @tt.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= @tt.errors.count %>件のエラーがあります。</h2>
+      <ul>
+
+      <% @tt.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
 
   <div class="tt_title">
     <%= form.label :content %>
@@ -13,8 +37,9 @@
 
 <br>
 <br>
-<h1>TT一覧</h1>
 
+<h1>TT一覧</h1>
+<p><%= notice %></p>
 <table>
   <tr>
     <th>内容</th>
@@ -23,6 +48,11 @@
 <% @tts.each do |tt| %>
   <tr>
     <td><%= tt.content %></td>
+    <td><%= link_to "TTを編集する", edit_tt_path(tt.id) %></td>
+    <td><%= link_to 'TTを削除する', tt_path(tt.id), method: :delete %></td>
   </tr>
 <% end %>
 </table>
+
+</body>
+</html>
