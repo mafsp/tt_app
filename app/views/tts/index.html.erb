@@ -13,7 +13,7 @@
     </header>
 <br>
 <br>
-  <%= form_with(model: @tt, local: true) do |form| %>
+  <%= form_with(model: @tt, local: true, url: confirm_tts_path) do |form| %>
     <% if @tt.errors.any? %>
       <div id="error_explanation">
         <h2><%= @tt.errors.count %>件のエラーがあります。</h2>

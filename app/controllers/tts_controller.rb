@@ -16,6 +16,10 @@ class TtsController < ApplicationController
     end
   end
   
+  def confirm
+    @tt = Tt.new(tt_params)
+  end
+  
   def edit
     @tt = Tt.find(params[:id])
   end
